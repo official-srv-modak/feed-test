@@ -1,4 +1,4 @@
-package com.souravmodak.feedtest;
+package com.souravmodak.feedtest.models.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

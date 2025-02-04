@@ -1,5 +1,7 @@
-package com.souravmodak.feedtest;
+package com.souravmodak.feedtest.api.service;
 
+import com.souravmodak.feedtest.FeedRepository;
+import com.souravmodak.feedtest.models.entities.Feed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
