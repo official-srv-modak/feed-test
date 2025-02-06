@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,5 +36,10 @@ public class FeedController {
                                                         @RequestParam(defaultValue = "0") int page,
                                                         @RequestParam(defaultValue = "10") int size) {
         return new BaseResponse<>(feedService.getAtDistance(distance, page, size), HttpStatus.OK, "Success");
+    }
+
+    @GetMapping("/profile/{id}")
+    public BaseResponse<Feed> getProfileById(@PathVariable("id") Long id) {
+        return new BaseResponse<>(feedService.getProfile(id), HttpStatus.OK, "Success");
     }
 }

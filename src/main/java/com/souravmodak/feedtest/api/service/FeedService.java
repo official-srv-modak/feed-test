@@ -29,4 +29,9 @@ public class FeedService {
         Pageable pageable = PageRequest.of(page, size, Sort.by("distance").ascending());
         return feedRepository.findByDistance(distance, pageable);
     }
+
+    public Feed getProfile(Long id)
+    {
+        return feedRepository.findById(id).orElse(null);
+    }
 }
