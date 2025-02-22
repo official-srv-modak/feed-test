@@ -37,16 +37,16 @@ public class PhotoController {
     );
 
     private static final List<String> DESCRIPTIONS = Arrays.asList(
-            "Loves adventure and spontaneity, exploring new places and meeting interesting people 🌍✨",
-            "A coffee enthusiast who enjoys sunsets, reading books, and a quiet evening ☕🌅📖",
-            "Spreading positivity with every step, one smile at a time, embracing life's ups and downs 😊❤️",
-            "Bookworm 📚 who loves fantasy stories and daydreams about magical worlds 💫",
-            "Dancing through life with grace and passion, making memories on every dance floor 💃🎶",
-            "A foodie who lives for discovering new flavors, always seeking the next culinary adventure 🍕🍣",
-            "Passionate about photography, capturing the beauty of nature, and traveling to exotic locations 📸🚀",
-            "Nature lover 🌿 who finds peace and solitude in the mountains, feeling connected to the earth 🏔️",
-            "Believer in kindness and positivity, striving to make the world a better place with each act of love 🌈🤗",
-            "Strong, independent, and full of life, constantly pushing boundaries and breaking limits 💪🔥"
+            "Loves adventure and spontaneity, always on the lookout for new places to explore and interesting people to meet. The world is full of endless possibilities, and they're eager to experience every bit of it 🌍✨",
+            "A true coffee enthusiast who finds joy in sipping a freshly brewed cup while watching the sun set. Often found curled up with a good book, creating a calm and peaceful atmosphere for a quiet evening ☕🌅📖",
+            "Spreading positivity wherever they go, one smile at a time. No matter the challenges that life brings, they always embrace it with a heart full of gratitude and a mindset that keeps them moving forward 😊❤️",
+            "A passionate bookworm 📚  who loves diving into fantasy worlds. Often lost in the pages of a good book, dreaming of magical realms filled with adventure, mystery, and wonder 💫",
+            "Dancing through life with grace and passion, constantly seeking the rhythm that makes them feel alive. Whether it's in a ballroom or on a lively dance floor, they cherish every moment of movement and expression 💃🎶",
+            "A self-proclaimed foodie, always on the lookout for the next culinary adventure. From local street food to international delicacies, they live to explore new flavors and savor every bite 🍕🍣",
+            "A passionate photographer who loves capturing the beauty of nature. Their camera is always ready to preserve the awe-inspiring landscapes and moments from their travels to exotic, off-the-beaten-path destinations 📸🚀",
+            "A nature lover at heart 🌿 who seeks peace in the mountains and finds tranquility in the great outdoors. There's something truly magical about feeling connected to the earth and embracing the solitude that nature offers 🏔️",
+            "A firm believer in kindness and positivity, striving to make the world a better place one act of love at a time. They believe that small gestures of kindness can lead to bigger changes and bring light to even the darkest places 🌈🤗",
+            "Strong, independent, and full of life, always pushing boundaries and breaking limits. With a fierce determination to succeed, they're constantly seeking to grow, learn, and rise above every obstacle that comes their way 💪🔥"
     );
 
     @GetMapping
@@ -67,6 +67,12 @@ public class PhotoController {
                 photoData.put("description", randomDesc);  // Longer description now
                 photoData.put("gender", "Female");
                 photoData.put("photoName", encodedFileName);
+
+
+                String fileExtension = getFileExtension(fileName);
+
+                photoData.put("mediaType", fileExtension);
+
 
                 photoDetails.add(photoData);
             }
