@@ -1,5 +1,6 @@
 package com.souravmodak.feedtest.api;
 
+import com.souravmodak.feedtest.models.entities.Post;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpHeaders;
@@ -50,8 +51,8 @@ public class PhotoController {
     );
 
     @GetMapping
-    public ResponseEntity<List<Map<String, String>>> getPhotos() {
-        List<Map<String, String>> photoDetails = new ArrayList<>();
+    public ResponseEntity<List<Post>> getPhotos() {
+        List<Post> photoDetails = new ArrayList<>();
 
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(PHOTO_DIRECTORY)) {  // No restriction on file types
             for (Path filePath : stream) {
@@ -61,25 +62,17 @@ public class PhotoController {
                 String randomName = NAMES.get(new Random().nextInt(NAMES.size()));
                 String randomDesc = DESCRIPTIONS.get(new Random().nextInt(DESCRIPTIONS.size()));
 
-                Map<String, String> photoData = new HashMap<>();
-                photoData.put("fileName", fileName);
-                photoData.put("name", randomName);
-                photoData.put("description", randomDesc);  // Longer description now
-                photoData.put("gender", "Female");
-                photoData.put("photoName", encodedFileName);
-
-
-                String fileExtension = getFileExtension(fileName);
-
-                photoData.put("mediaType", fileExtension);
-
+                Post photoData = new Post();
+                photoData.setName(randomName);
+                photoData.setDescription(randomDesc);
+                photoData.setGender("Female");
+                photoData.setPhotoName(encodedFileName);
+                photoData.setMediaType(getFileExtension(fileName));
 
                 photoDetails.add(photoData);
             }
         } catch (IOException e) {
-            return ResponseEntity.internalServerError().body(Collections.singletonList(
-                    Map.of("error", "Unable to read files from directory: " + PHOTO_DIRECTORY)
-            ));
+            return ResponseEntity.internalServerError().body(new ArrayList<>());
         }
 
         return ResponseEntity.ok(photoDetails);
